@@ -1,0 +1,15 @@
+.{
+  .name = "phantom.examples",
+  .version = "0.1.0",
+  .paths = .{"."},
+  .dependencies = .{
+    .@"phantom.i18n" = .{
+      .url = "https://github.com/PhantomUIx/i18n/archive/6e3d4d26916fce1cf97f49a201459a2d066d144c.tar.gz",
+      .hash = "12203988815fdb49289b66e766e6733728157c3f77508933af6d205aa6bcc3b4b595",
+    },
+    .phantom = .{
+      .url = "https://github.com/PhantomUIx/core/archive/8d5ec14e9bd68f5c6d56f4425b894f6ac5660d4c.tar.gz",
+      .hash = "122089bcabf151c4e64e4480f87d3aaa09863b486ccf112a17445319b4be5ec1d88c",
+    },
+  },
+}
