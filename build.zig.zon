@@ -4,12 +4,12 @@
   .paths = .{"."},
   .dependencies = .{
     .@"phantom.i18n" = .{
-      .url = "https://github.com/PhantomUIx/i18n/archive/6e3d4d26916fce1cf97f49a201459a2d066d144c.tar.gz",
-      .hash = "12203988815fdb49289b66e766e6733728157c3f77508933af6d205aa6bcc3b4b595",
+      .url = "https://github.com/PhantomUIx/i18n/archive/941945e730a50520dfbc44825612b71b86e9a6f7.tar.gz",
+      .hash = "12202590d5272332603b3f472931f1c2a3e2a25ed5e3981f8f3e00271fa545634be3",
     },
     .phantom = .{
-      .url = "https://github.com/PhantomUIx/core/archive/07570da52661518e3aa5f95c39f4f68b5728af24.tar.gz",
-      .hash = "1220c1d75a75aa3b0af882d9ae23609567e82a0770c838c6260c79d105180096ab1c",
+      .url = "https://github.com/PhantomUIx/core/archive/c96b5b99475ce0c5ba0d2cb337ed93b70ba65373.tar.gz",
+      .hash = "1220807d0a350b9ad6be23b53888b8a3c920a96072be1251b319f68aee555972022d",
     },
   },
 }
