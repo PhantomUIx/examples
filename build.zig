@@ -6,20 +6,9 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
     const backend = b.option(Phantom.BackendType, "backend", "The backend to use for the example") orelse .headless;
 
-    const phantom_i18n = b.dependency("phantom.i18n", .{
-        .target = target,
-        .optimize = optimize,
-    });
-
     const phantom = b.dependency("phantom", .{
         .target = target,
         .optimize = optimize,
-    });
-
-    _ = b.addModule("phantom.i18n", .{
-        .source_file = .{
-            .path = phantom_i18n.builder.pathFromRoot(phantom_i18n.module("phantom.i18n").source_file.path),
-        },
     });
 
     _ = b.addModule("phantom", .{
@@ -41,7 +30,6 @@ pub fn build(b: *std.Build) void {
     });
 
     exe.addModule("phantom", phantom.module("phantom"));
-    exe.addModule("phantom.i18n", phantom_i18n.module("phantom.i18n"));
     exe.addOptions("options", options);
     b.installArtifact(exe);
 }
