@@ -8,8 +8,8 @@
       .hash = "12203988815fdb49289b66e766e6733728157c3f77508933af6d205aa6bcc3b4b595",
     },
     .phantom = .{
-      .url = "https://github.com/PhantomUIx/core/archive/8d5ec14e9bd68f5c6d56f4425b894f6ac5660d4c.tar.gz",
-      .hash = "122089bcabf151c4e64e4480f87d3aaa09863b486ccf112a17445319b4be5ec1d88c",
+      .url = "https://github.com/PhantomUIx/core/archive/07570da52661518e3aa5f95c39f4f68b5728af24.tar.gz",
+      .hash = "1220c1d75a75aa3b0af882d9ae23609567e82a0770c838c6260c79d105180096ab1c",
     },
   },
 }
