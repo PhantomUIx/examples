@@ -4,16 +4,16 @@
   .paths = .{"."},
   .dependencies = .{
     .@"phantom.i18n" = .{
-      .url = "https://github.com/PhantomUIx/i18n/archive/941945e730a50520dfbc44825612b71b86e9a6f7.tar.gz",
-      .hash = "12202590d5272332603b3f472931f1c2a3e2a25ed5e3981f8f3e00271fa545634be3",
+      .url = "https://github.com/PhantomUIx/i18n/archive/5bc9dae58128b9979da6caa2add832b547ec8dfd.tar.gz",
+      .hash = "1220d2ec9243d536336636288e99d77388d6c80a3dbf6cea02a35e7f6feaf37235cf",
     },
     .@"phantom.display.uefi" = .{
-      .url = "https://github.com/PhantomUIx/display-uefi/archive/01c93ae609c6764fdd2eda1db0fbe6ebc8d7349d.tar.gz",
-      .hash = "12204a36b9c591f605575b456bb979721b004fb4834cb2a4841a012ec31bb8c7f8eb",
+      .url = "https://github.com/PhantomUIx/display-uefi/archive/85551ee93471d862e1e9954631eec10b95013e07.tar.gz",
+      .hash = "12200ecf708dfaf4345cc3cd29b6ea98b7678e8d6ba6125bd564249f2110341988b4",
     },
     .phantom = .{
-      .url = "https://github.com/PhantomUIx/core/archive/a7cdd480decac2812e66301b7494137f6a3d5d03.tar.gz",
-      .hash = "12206e7a39b76d73547275140e0df9e27191a27f237685955c404471cbf3c79e1cdb",
+      .url = "https://github.com/PhantomUIx/core/archive/2646d5559bc49ed09f08562b0a72737b9d9eb412.tar.gz",
+      .hash = "12205969c3bc047bea9d42ddd7c0486da4a519430b1dc2e02f190debb1afdefae465",
     },
     .vizops = .{
       .url = "https://github.com/MidstallSoftware/vizops/archive/7a1b49fea05d75cabc920c247eba0274e91bf967.tar.gz",

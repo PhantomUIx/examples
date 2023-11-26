@@ -3,13 +3,14 @@ const options = @import("options");
 const phantom = @import("phantom");
 const vizops = @import("vizops");
 
+const displayBackendType: phantom.display.BackendType = @enumFromInt(@intFromEnum(options.display_backend));
+const displayBackend = phantom.display.Backend(displayBackendType);
+
+const sceneBackendType: phantom.scene.BackendType = @enumFromInt(@intFromEnum(options.scene_backend));
+const sceneBackend = phantom.scene.Backend(sceneBackendType);
+
 pub fn main() !void {
     const alloc = std.heap.page_allocator;
-
-    const displayBackendType = comptime std.meta.stringToEnum(phantom.display.BackendType, @tagName(options.display_backend)).?;
-    const displayBackend = phantom.display.Backend(displayBackendType);
-
-    const sceneBackendType = comptime std.meta.stringToEnum(phantom.scene.BackendType, @tagName(options.scene_backend)).?;
 
     var display = displayBackend.Display.init(alloc, .compositor);
     defer display.deinit();
@@ -44,7 +45,7 @@ pub fn main() !void {
         surface.deinit();
     }
 
-    const scene = try surface.createScene(sceneBackendType);
+    const scene = try surface.createScene(@enumFromInt(@intFromEnum(sceneBackendType)));
     _ = scene;
     // TODO: render something to the scene
 }
