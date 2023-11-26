@@ -7,9 +7,17 @@
       .url = "https://github.com/PhantomUIx/i18n/archive/941945e730a50520dfbc44825612b71b86e9a6f7.tar.gz",
       .hash = "12202590d5272332603b3f472931f1c2a3e2a25ed5e3981f8f3e00271fa545634be3",
     },
+    .@"phantom.display.uefi" = .{
+      .url = "https://github.com/PhantomUIx/display-uefi/archive/01c93ae609c6764fdd2eda1db0fbe6ebc8d7349d.tar.gz",
+      .hash = "12204a36b9c591f605575b456bb979721b004fb4834cb2a4841a012ec31bb8c7f8eb",
+    },
     .phantom = .{
-      .url = "https://github.com/PhantomUIx/core/archive/c96b5b99475ce0c5ba0d2cb337ed93b70ba65373.tar.gz",
-      .hash = "1220807d0a350b9ad6be23b53888b8a3c920a96072be1251b319f68aee555972022d",
+      .url = "https://github.com/PhantomUIx/core/archive/a7cdd480decac2812e66301b7494137f6a3d5d03.tar.gz",
+      .hash = "12206e7a39b76d73547275140e0df9e27191a27f237685955c404471cbf3c79e1cdb",
+    },
+    .vizops = .{
+      .url = "https://github.com/MidstallSoftware/vizops/archive/7a1b49fea05d75cabc920c247eba0274e91bf967.tar.gz",
+      .hash = "12208e6d1334b77b2ac9351867da74dbce8f8470ea0367ffa1531fcf42e22b631371",
     },
   },
 }
