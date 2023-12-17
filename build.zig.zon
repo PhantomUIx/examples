@@ -4,12 +4,12 @@
   .paths = .{"."},
   .dependencies = .{
     .@"phantom.display.uefi" = .{
-      .url = "https://github.com/PhantomUIx/display-uefi/archive/85db52fd68636270f654075a7d912a3102e20cc8.tar.gz",
-      .hash = "122087ed06486b50ff08782d2f0d8ad2752b1a9b19c02b8afad6c36e6a85311bc988",
+      .url = "https://github.com/PhantomUIx/display-uefi/archive/71314fc70e4720ab66b9538d8743e6b967e3b928.tar.gz",
+      .hash = "1220cb9f94c87805b41564dfc422e4c0dcc36178fa5c913d9de2bd5375ac463e5f73",
     },
     .phantom = .{
-      .url = "https://github.com/PhantomUIx/core/archive/d3fd5b1c5605f11158d45add5dfff7352a8a7ffb.tar.gz",
-      .hash = "12203ace01b91c6a4c454deecb4d7a5cecc18c36198938569c67bce01e9889413286",
+      .url = "https://github.com/PhantomUIx/core/archive/92d373915c90fc7131f0dee91b21509d55986b4d.tar.gz",
+      .hash = "12202f1aca5b17b007426c00cae559cc5a38f06a9a441e381cc20e5e3e967293e8a4",
     },
     .vizops = .{
       .url = "https://github.com/MidstallSoftware/vizops/archive/8b8499e195d8cf66e9b13ed1c80b24ee27420a29.tar.gz",
