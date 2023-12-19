@@ -4,16 +4,24 @@
   .paths = .{"."},
   .dependencies = .{
     .@"phantom.display.uefi" = .{
-      .url = "https://github.com/PhantomUIx/display-uefi/archive/71314fc70e4720ab66b9538d8743e6b967e3b928.tar.gz",
-      .hash = "1220cb9f94c87805b41564dfc422e4c0dcc36178fa5c913d9de2bd5375ac463e5f73",
+      .url = "https://github.com/PhantomUIx/display-uefi/archive/cca33aa75ed0b9790ad61cc0fd583a7ece240715.tar.gz",
+      .hash = "1220fec48cb9d68b2da146f7660afc1d0afdee60ad1b9c4d754cbd3aa2dd009baea9",
+    },
+    .@"phantom.image.gif" = .{
+      .url = "https://github.com/PhantomUIx/image-gif/archive/fd2949f098d6ab5b59dc1b542bb255a01d59d3a9.tar.gz",
+      .hash = "1220b315f3a8ef4af55026b704713a0bb4bf14a54a17e8196bfe9c236c0feafa752f",
     },
     .phantom = .{
-      .url = "https://github.com/PhantomUIx/core/archive/92d373915c90fc7131f0dee91b21509d55986b4d.tar.gz",
-      .hash = "12202f1aca5b17b007426c00cae559cc5a38f06a9a441e381cc20e5e3e967293e8a4",
+      .url = "https://github.com/PhantomUIx/core/archive/0cbea8f53e650f4864bf41c372c330a050710c10.tar.gz",
+      .hash = "1220e811950ddd80422a486e322fdd78c55814560743da88bb9d32a890a3e0421626",
     },
     .vizops = .{
       .url = "https://github.com/MidstallSoftware/vizops/archive/8b8499e195d8cf66e9b13ed1c80b24ee27420a29.tar.gz",
       .hash = "1220f478cda5edf75a0b837e04c741631e4136e422b4257ccbd09d4cccaf736ac312",
+    },
+    .zigimg = .{
+      .url = "https://github.com/zigimg/zigimg/archive/281d3a0e7599e8c3e174ecc00a259e5e039c9870.tar.gz",
+      .hash = "12203ffe8b358a125a40c6683715bc634e244a4e8fda191c01cc4084e5bfc9e0007b",
     },
   },
 }
