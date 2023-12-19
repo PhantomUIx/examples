@@ -66,7 +66,7 @@ pub fn main() void {
     }
 
     const fb = scene.createNode(.NodeFrameBuffer, .{
-        .source = buffers.items[0],
+        .source = buffers.items[0].dupe() catch |e| @panic(@errorName(e)),
     }) catch |e| @panic(@errorName(e));
 
     while (true) {
