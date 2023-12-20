@@ -12,6 +12,15 @@ const displayBackend = phantom.display.Backend(displayBackendType);
 const sceneBackendType: phantom.scene.BackendType = @enumFromInt(@intFromEnum(options.scene_backend));
 const sceneBackend = phantom.scene.Backend(sceneBackendType);
 
+fn simpleTextOutputWrite(sto: *std.os.uefi.protocol.SimpleTextOutput, buf: []const u8) !usize {
+    const buf16 = try std.unicode.utf8ToUtf16LeWithNull(alloc, buf);
+    defer alloc.free(buf16);
+    try sto.outputString(buf16).err();
+    return buf.len;
+}
+
+const SimpleTextOutputWriter = std.io.Writer(*std.os.uefi.protocol.SimpleTextOutput, std.os.uefi.Status.EfiError || std.mem.Allocator.Error || error{InvalidUtf8}, simpleTextOutputWrite);
+
 pub fn main() void {
     var display = displayBackend.Display.init(alloc, .compositor);
     defer display.deinit();
@@ -58,11 +67,27 @@ pub fn main() void {
         .source = image.buffer(0) catch |e| @panic(@errorName(e)),
     }) catch |e| @panic(@errorName(e));
 
+    const stderr = if (builtin.os.tag == .uefi) SimpleTextOutputWriter{
+        .context = std.os.uefi.system_table.std_err.?,
+    } else std.os.getStdErr().writer();
+
+    var prevTime = std.time.milliTimestamp();
     while (true) {
+        const currTime = std.time.milliTimestamp();
+        const deltaTime = currTime - prevTime;
+        _ = stderr.print("FPS: {} (Delta time: {}, Prev: {}, Curr: {})\n", .{
+            60 / @max(deltaTime, 1),
+            deltaTime,
+            prevTime,
+            currTime,
+        }) catch {};
+
         _ = scene.frame(fb) catch |e| @panic(@errorName(e));
 
         fb.setProperties(.{
             .source = image.buffer(scene.seq % image.info().seqCount) catch |e| @panic(@errorName(e)),
         }) catch |e| @panic(@errorName(e));
+
+        prevTime = currTime;
     }
 }
