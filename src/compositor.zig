@@ -3,7 +3,6 @@ const builtin = @import("builtin");
 const options = @import("options");
 const phantom = @import("phantom");
 const vizops = @import("vizops");
-const zigimg = @import("zigimg");
 
 const alloc = if (builtin.link_libc) std.heap.c_allocator else if (builtin.os.tag == .uefi) std.os.uefi.pool_allocator else std.heap.page_allocator;
 
@@ -49,54 +48,21 @@ pub fn main() void {
 
     const scene = surface.createScene(@enumFromInt(@intFromEnum(sceneBackendType))) catch |e| @panic(@errorName(e));
 
-    const format = phantom.painting.image.formats.gif.create(alloc) catch |e| @panic(@errorName(e));
+    const format = phantom.painting.image.formats.zigimg.create(alloc) catch |e| @panic(@errorName(e));
     defer format.deinit();
 
-    //const image = format.readBuffer(@embedFile("example.gif")) catch |e| @panic(@errorName(e));
-    //defer image.deinit();
-
-    const image = zigimg.Image.fromMemory(alloc, @embedFile("example.gif")) catch |e| @panic(@errorName(e));
+    const image = format.readBuffer(@embedFile("example.gif")) catch |e| @panic(@errorName(e));
     defer image.deinit();
 
-    var buffers = std.ArrayList(*phantom.painting.fb.Base).initCapacity(alloc, image.animation.frames.items.len) catch |e| @panic(@errorName(e));
-    defer buffers.deinit();
-
-    for (0..image.animation.frames.items.len) |i| {
-        buffers.appendAssumeCapacity(createFrameBuffer(image, i) catch |e| @panic(@errorName(e)));
-    }
-
     const fb = scene.createNode(.NodeFrameBuffer, .{
-        .source = buffers.items[0].dupe() catch |e| @panic(@errorName(e)),
+        .source = image.buffer(0) catch |e| @panic(@errorName(e)),
     }) catch |e| @panic(@errorName(e));
 
     while (true) {
         _ = scene.frame(fb) catch |e| @panic(@errorName(e));
 
         fb.setProperties(.{
-            .source = buffers.items[scene.seq % image.animation.frames.items.len],
+            .source = image.buffer(scene.seq % image.info().seqCount) catch |e| @panic(@errorName(e)),
         }) catch |e| @panic(@errorName(e));
     }
-}
-
-fn createFrameBuffer(image: zigimg.Image, frameIndex: usize) !*phantom.painting.fb.Base {
-    const frame = &image.animation.frames.items[frameIndex];
-
-    const fb = try phantom.painting.fb.AllocatedFrameBuffer.create(alloc, .{
-        .res = .{ .value = .{ image.width, image.height } },
-        .colorspace = .sRGB,
-        .colorFormat = .{ .rgb = @splat(8) },
-    });
-    errdefer fb.deinit();
-
-    var i: usize = 0;
-    for (frame.pixels.indexed4.indices) |indic| {
-        const pixel = frame.pixels.indexed4.palette[indic];
-        try fb.write(i, &[_]u8{
-            pixel.r,
-            pixel.g,
-            pixel.b,
-        });
-        i += 3;
-    }
-    return fb;
 }

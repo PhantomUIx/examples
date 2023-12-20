@@ -17,11 +17,6 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const zigimg = b.dependency("zigimg", .{
-        .target = target,
-        .optimize = optimize,
-    });
-
     const options = b.addOptions();
     options.addOption(Phantom.DisplayBackendType, "display_backend", display_backend);
     options.addOption(Phantom.SceneBackendType, "scene_backend", scene_backend);
@@ -37,7 +32,6 @@ pub fn build(b: *std.Build) void {
 
     exe_compositor.addModule("phantom", phantom.module("phantom"));
     exe_compositor.addModule("vizops", vizops.module("vizops"));
-    exe_compositor.addModule("zigimg", zigimg.module("zigimg"));
     exe_compositor.addOptions("options", options);
     b.installArtifact(exe_compositor);
 }
