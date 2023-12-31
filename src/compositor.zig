@@ -69,7 +69,7 @@ pub fn main() void {
 
     const stderr = if (builtin.os.tag == .uefi) SimpleTextOutputWriter{
         .context = std.os.uefi.system_table.std_err.?,
-    } else std.os.getStdErr().writer();
+    } else std.io.getStdErr().writer();
 
     var prevTime = std.time.milliTimestamp();
     while (true) {
