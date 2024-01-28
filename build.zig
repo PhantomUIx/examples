@@ -30,8 +30,8 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    exe_compositor.addModule("phantom", phantom.module("phantom"));
-    exe_compositor.addModule("vizops", vizops.module("vizops"));
-    exe_compositor.addOptions("options", options);
+    exe_compositor.root_module.addImport("phantom", phantom.module("phantom"));
+    exe_compositor.root_module.addImport("vizops", vizops.module("vizops"));
+    exe_compositor.root_module.addImport("options", options.createModule());
     b.installArtifact(exe_compositor);
 }
