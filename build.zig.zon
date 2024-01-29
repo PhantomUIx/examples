@@ -1,23 +1,23 @@
 .{
-  .name = "phantom.examples",
-  .version = "0.1.0",
-  .paths = .{"."},
-  .dependencies = .{
-    .@"phantom.display.uefi" = .{
-      .url = "https://github.com/PhantomUIx/display-uefi/archive/7792c02fbe5f8a14264499e3583d8708a348c07d.tar.gz",
-      .hash = "12207a4f097443067a99d7bf7919b91a177a06b62b0dfda0d2a7a1788a49cdd9bbfc",
+    .name = "phantom.examples",
+    .version = "0.1.0",
+    .paths = .{"."},
+    .dependencies = .{
+        .@"phantom.display.uefi" = .{
+            .url = "https://github.com/PhantomUIx/display-uefi/archive/723a5f8b4c751a488eeaae781e67ec60cdef0525.tar.gz",
+            .hash = "1220c5b8911538cc2aa1009f1f6dccd54ae5dc11bc0f5ee6c84c07fa7ddfaa02fa3f",
+        },
+        .@"phantom.compat.zigimg" = .{
+            .url = "https://github.com/PhantomUIx/compat-zigimg/archive/6f81da19d29aa88f73d5ac27d7a4d4540e5b67a7.tar.gz",
+            .hash = "1220a71bc11122abbd2c27ced9ca77a496c2b426c78b7be0838fd2bf95f9c2a4a632",
+        },
+        .phantom = .{
+            .url = "https://github.com/PhantomUIx/core/archive/13cb70007519475065743509e3a908c7105ded1d.tar.gz",
+            .hash = "12203b3735b8056b34491d5aa777ca5689d1031b1be03690f2cb5b18f6bacd42424f",
+        },
+        .vizops = .{
+            .url = "https://github.com/MidstallSoftware/vizops/archive/626d6bbf78fe7d192d0dea77abb7d99d272f7039.tar.gz",
+            .hash = "1220f1f74b130449d782e38792cbe5d6b519ff706dd4f260f8cb0ced10a1f03f8eab",
+        },
     },
-    .@"phantom.compat.zigimg" = .{
-      .url = "https://github.com/PhantomUIx/compat-zigimg/archive/c3ee78c165e73fb11329a5506fa8d1a7a6ef1fc9.tar.gz",
-      .hash = "1220dbba81b848d39b5fcf50904d8349fd7f6770a31fff2b84c3914b692364f692cc",
-    },
-    .phantom = .{
-      .url = "https://github.com/PhantomUIx/core/archive/ba3a93a0dba0037e33e56eca741a6f31616c9bdd.tar.gz",
-      .hash = "1220d1b9faa83c0ec7a8a67a3034b898eebaab93023a84c37a5a5e7833ad328fcc85",
-    },
-    .vizops = .{
-      .url = "https://github.com/MidstallSoftware/vizops/archive/626d6bbf78fe7d192d0dea77abb7d99d272f7039.tar.gz",
-      .hash = "1220f1f74b130449d782e38792cbe5d6b519ff706dd4f260f8cb0ced10a1f03f8eab",
-    },
-  },
 }
