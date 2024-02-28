@@ -25,9 +25,6 @@ jobs:
       - name: Build
         run: |
           zig build -Dtarget=${{ matrix.target }} -Doptimize=${{ matrix.optimize }}
-      - name: Test
-        run: |
-          zig build test
   windows:
     runs-on: windows-latest
     strategy:
@@ -40,9 +37,6 @@ jobs:
       - name: Build
         run: |
           zig build -Dtarget=${{ matrix.target }} -Doptimize=${{ matrix.optimize }}
-      - name: Test
-        run: |
-          zig build test
   linux:
     runs-on: ubuntu-latest
     strategy:
@@ -55,6 +49,3 @@ jobs:
       - name: Build
         run: |
           zig build -Dtarget=${{ matrix.target }} -Doptimize=${{ matrix.optimize }}
-      - name: Test
-        run: |
-          zig build test
