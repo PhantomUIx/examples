@@ -20,8 +20,8 @@
             .hash = "122034cb13e03603cc7e8ece3234c1b3361504a2624cf5d18fa374e8b95f48cc9e22",
         },
         .@"phantom.font.bdf" = .{
-            .url = "https://github.com/PhantomUIx/font-bdf/archive/b08385f3379158f30cb02f66296b15353c6e902e.tar.gz",
-            .hash = "1220102f5282de7ff2215cd4f37dbfb32fe9e04c73d3297a1f1fd87736c9a4a9cdb3",
+            .url = "https://github.com/PhantomUIx/font-bdf/archive/5fcfb1ebacd5692609fe106f2b0677e970bde9c7.tar.gz",
+            .hash = "1220409bc05979c88050327c9d3b418bb6deaa93615bc02fadcbac5a25076434b95b",
         },
     },
 }

@@ -65,14 +65,14 @@ pub fn main() void {
         .foregroundColor = .{
             .uint8 = .{
                 .sRGB = .{
-                    .value = @splat(0),
+                    .value = @splat(255),
                 },
             },
         },
         .backgroundColor = .{
             .uint8 = .{
                 .sRGB = .{
-                    .value = @splat(255),
+                    .value = @splat(0),
                 },
             },
         },
