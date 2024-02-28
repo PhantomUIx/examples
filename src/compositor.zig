@@ -47,47 +47,59 @@ pub fn main() void {
     }
 
     const output = outputs.items[0];
+    const outputInfo = output.info() catch |e| @panic(@errorName(e));
     const surface = output.createSurface(.output, .{
-        .size = (output.info() catch |e| @panic(@errorName(e))).size.res,
+        .size = outputInfo.size.res,
     }) catch |e| @panic(@errorName(e));
     defer {
         surface.destroy() catch {};
         surface.deinit();
     }
 
+    const fontFormat = phantom.fonts.backends.bdf.create(alloc) catch |e| @panic(@errorName(e));
+    defer fontFormat.deinit();
+
+    const font = fontFormat.loadBuffer(@embedFile("example.bdf"), .{
+        .colorspace = .sRGB,
+        .colorFormat = .{ .rgba = @splat(8) },
+        .foregroundColor = .{
+            .uint8 = .{
+                .sRGB = .{
+                    .value = @splat(0),
+                },
+            },
+        },
+        .backgroundColor = .{
+            .uint8 = .{
+                .sRGB = .{
+                    .value = @splat(255),
+                },
+            },
+        },
+    }) catch |e| @panic(@errorName(e));
+    defer font.deinit();
+
+    const utfView = std.unicode.Utf8View.initComptime("Hello, world!");
+    var iter = utfView.iterator();
+
+    var nodes = std.ArrayList(*phantom.scene.Node).init(alloc);
+
     const scene = surface.createScene(@enumFromInt(@intFromEnum(sceneBackendType))) catch |e| @panic(@errorName(e));
 
-    const format = phantom.painting.image.formats.zigimg.create(alloc) catch |e| @panic(@errorName(e));
-    defer format.deinit();
+    while (iter.nextCodepoint()) |codepoint| {
+        const glyph = font.lookupGlyph(codepoint) catch |e| @panic(@errorName(e));
 
-    const image = format.readBuffer(@embedFile("example.gif")) catch |e| @panic(@errorName(e));
-    defer image.deinit();
+        nodes.append(scene.createNode(.NodeFrameBuffer, .{
+            .source = glyph.fb,
+        }) catch |e| @panic(@errorName(e))) catch |e| @panic(@errorName(e));
+    }
 
-    const fb = scene.createNode(.NodeFrameBuffer, .{
-        .source = image.buffer(0) catch |e| @panic(@errorName(e)),
+    const flex = scene.createNode(.NodeFlex, .{
+        .direction = .horizontal,
+        .children = nodes.items,
     }) catch |e| @panic(@errorName(e));
 
-    const stderr = if (builtin.os.tag == .uefi) SimpleTextOutputWriter{
-        .context = std.os.uefi.system_table.std_err.?,
-    } else std.io.getStdErr().writer();
-
-    var prevTime = std.time.milliTimestamp();
     while (true) {
-        const currTime = std.time.milliTimestamp();
-        const deltaTime = currTime - prevTime;
-        _ = stderr.print("FPS: {} (Delta time: {}, Prev: {}, Curr: {})\n", .{
-            60 / @max(deltaTime, 1),
-            deltaTime,
-            prevTime,
-            currTime,
-        }) catch {};
-
-        _ = scene.frame(fb) catch |e| @panic(@errorName(e));
-
-        fb.setProperties(.{
-            .source = image.buffer(scene.seq % image.info().seqCount) catch |e| @panic(@errorName(e)),
-        }) catch |e| @panic(@errorName(e));
-
-        prevTime = currTime;
+        _ = scene.frame(flex) catch |e| @panic(@errorName(e));
     }
 }
