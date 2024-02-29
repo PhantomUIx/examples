@@ -79,27 +79,14 @@ pub fn main() void {
     }) catch |e| @panic(@errorName(e));
     defer font.deinit();
 
-    const utfView = std.unicode.Utf8View.initComptime("Hello, world!");
-    var iter = utfView.iterator();
-
-    var nodes = std.ArrayList(*phantom.scene.Node).init(alloc);
-
     const scene = surface.createScene(@enumFromInt(@intFromEnum(sceneBackendType))) catch |e| @panic(@errorName(e));
 
-    while (iter.nextCodepoint()) |codepoint| {
-        const glyph = font.lookupGlyph(codepoint) catch |e| @panic(@errorName(e));
-
-        nodes.append(scene.createNode(.NodeFrameBuffer, .{
-            .source = glyph.fb,
-        }) catch |e| @panic(@errorName(e))) catch |e| @panic(@errorName(e));
-    }
-
-    const flex = scene.createNode(.NodeFlex, .{
-        .direction = .horizontal,
-        .children = nodes.items,
+    const text = scene.createNode(.NodeText, .{
+        .font = font,
+        .view = std.unicode.Utf8View.initComptime("Hellord"),
     }) catch |e| @panic(@errorName(e));
 
     while (true) {
-        _ = scene.frame(flex) catch |e| @panic(@errorName(e));
+        _ = scene.frame(text) catch |e| @panic(@errorName(e));
     }
 }
